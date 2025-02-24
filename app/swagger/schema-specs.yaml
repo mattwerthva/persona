@@ -1,0 +1,11 @@
+components:
+  schemas:
+    Hello:
+      type: object
+      properties:
+        id:
+          type: string
+          description: unique id
+        name:
+          type: string
+          description: A descriptive name

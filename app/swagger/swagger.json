@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Node Boiler API",
+    "description": "Node Boiler service",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Is the service healthy",
+        "description": "Is the service healthy",
+        "responses": {
+          "200": {
+            "description": "The service is running",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Hello": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique id"
+          },
+          "name": {
+            "type": "string",
+            "description": "A descriptive name"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}

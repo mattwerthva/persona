@@ -1,0 +1,32 @@
+{
+  "globals": {
+    "Parse": "readonly",
+    "describe": "readonly",
+    "test": "readonly",
+    "it": "readonly",
+    "expect": "readonly",
+    "beforeEach": "readonly",
+    "beforeAll": "readonly",
+    "afterEach": "readonly",
+    "afterAll": "readonly",
+    "__basedir": "readonly"
+  },
+  "rules": {
+    "unicorn/no-reduce": "off",
+    "no-return-await": "off",
+    "camelcase": "off",
+    "capitalized-comments": "off",
+    "unicorn/filename-case": "off",
+    "import/no-unassigned-import": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "new-cap": "off",
+    "no-await-in-loop": "off",
+    "promise/prefer-await-to-then": "off",
+    "no-negated-condition": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "prefer-destructuring": "off",
+    "max-params": "off",
+    "import/extensions": "off",
+    "no-wraning-comments": "off"
+  }
+}
