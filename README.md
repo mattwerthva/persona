@@ -1,17 +1,22 @@
 # NodeJs Boiler Service
-This is a basic node.js boilerplate
+This is the Replica Persona server derived from a basic node.js boilerplate
 
 ### Setup
 ```
-    git clone git@github.com:mattwerthva/node_boiler.git
-    cd node_boiler
+    git clone git@github.com:mattwerthva/persona.git
+    cd persona
     nvm use 18.20.5
     npm install
 ```
 
-### Generate OpenApi docs
+### Run Postgres in docker-compose
 ```
-    npm run docs
+    docker-compose up -d
+```
+
+### copy .env.sample into .env.  Reconfigure if desired.
+```
+    mv .env.sample .env
 ```
 
 ### Run service locally
@@ -19,7 +24,12 @@ This is a basic node.js boilerplate
     npm run start
 ```
 
-### View OpenApi specs
+### Generate OpenApi docs
+```
+    npm run docs
+```
+
+### View OpenApi endpoint documentation
 ```
    http://localhost:8000/swagger
 ```

@@ -12,9 +12,4 @@ COPY ./app ./app
 # Install dependencies
 RUN npm install
 
-# WORKDIR /usr/src/app
-RUN chown node:node /usr/src/app
-
-USER node
-
-CMD ["node", "server.js"]
+CMD ["node", "app/server.js"]

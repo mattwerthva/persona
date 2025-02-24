@@ -15,6 +15,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 
 // Routes
 app.use(require("./routes/health"));
+app.use(require("./routes/persona"));
 
 // listen
 const HOSTNAME = os.hostname();
