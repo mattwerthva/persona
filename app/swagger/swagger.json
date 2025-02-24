@@ -26,20 +26,157 @@
           }
         }
       }
+    },
+    "/persona": {
+      "post": {
+        "summary": "Create a persona",
+        "description": "Create a persona",
+        "requestBody": {
+          "description": "The persona data to create",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The unique identifier for the persona"
+                  },
+                  "firstname": {
+                    "type": "string",
+                    "description": "The first name of the persona"
+                  },
+                  "lastname": {
+                    "type": "string",
+                    "description": "The last name of the persona"
+                  },
+                  "interests": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "An array of interests for the persona"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "The latitude coordinate of the persona's location"
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "The longitude coordinate of the persona's location"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Persona created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Persona"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input.  Missing reuired fields.  Id is not unique."
+          },
+          "403": {
+            "description": "unauthorized."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "/persona/{id}": {
+      "get": {
+        "summary": "Get persona by Id",
+        "description": "Get persona by Id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Persona created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Persona"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input.  Missing required id."
+          },
+          "403": {
+            "description": "unauthorized."
+          },
+          "404": {
+            "description": "Persona with ID not found."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Hello": {
+      "Persona": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "unique id"
+            "description": "Externally defined unique id string for the Persona"
           },
-          "name": {
+          "firstname": {
             "type": "string",
-            "description": "A descriptive name"
+            "description": "The first name for the persona"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "The last name for the persona"
+          },
+          "intrests": {
+            "description": "An array of interests for the persona",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "latitude": {
+            "type": "float",
+            "description": "The latitude of the persona's location"
+          },
+          "longitude": {
+            "type": "float",
+            "description": "The longitude of the persona's location"
+          },
+          "city": {
+            "type": "string",
+            "description": "The city for the lat/long according by the National Weather Service"
+          },
+          "state": {
+            "type": "string",
+            "description": "The state for the lat/long according by the National Weather Service"
+          },
+          "current_tempurature": {
+            "type": "float",
+            "description": "The current tempurature for the lat/long according by the National Weather Service"
           }
         }
       }

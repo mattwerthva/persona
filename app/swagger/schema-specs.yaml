@@ -1,11 +1,34 @@
 components:
   schemas:
-    Hello:
+    Persona:
       type: object
       properties:
         id:
           type: string
-          description: unique id
-        name:
+          description: Externally defined unique id string for the Persona
+        firstname:
           type: string
-          description: A descriptive name
+          description: The first name for the persona
+        lastname:
+          type: string
+          description: The last name for the persona
+        intrests:
+          description: An array of interests for the persona
+          type: array
+          items:
+            type: string
+        latitude:
+          type: float
+          description: The latitude of the persona's location
+        longitude:
+          type: float
+          description: The longitude of the persona's location
+        city:
+          type: string
+          description: The city for the lat/long according by the National Weather Service
+        state:
+          type: string
+          description: The state for the lat/long according by the National Weather Service
+        current_tempurature:
+          type: float
+          description: The current tempurature for the lat/long according by the National Weather Service
