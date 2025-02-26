@@ -5,7 +5,7 @@ const HealthService = require('../services/health');
 
 // hello
 router.get('/', async (req,res) => {
-  res.status(200).send('Boiler service is running.');
+  res.status(200).send('Persona service is running.');
 });
 
 /**

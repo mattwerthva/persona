@@ -15,23 +15,11 @@ const sequelize = new Sequelize(
     config.db.username, 
     config.db.password, 
     {
-      dialect: 'postgres'
+      dialect: 'postgres',
+      host: config.db.host
     });
 
-// connect when module loads
-async function connectToDatabase() {
-  try {
-    await sequelize.authenticate();
-    console.log(`Sequelize is connected to ${config.db.host}`);
-  } catch (error) {
-    console.error(`Sequelize had error connecting to ${config.db.host}.  msg: ${error.message}`);
-  }
-}
-// eslint-disable-next-line padding-line-between-statements
-connectToDatabase();
-
 const modelPath = path.join(__dirname, '/models');
-
 fs.readdirSync(modelPath)
   .filter(file => {
     return (

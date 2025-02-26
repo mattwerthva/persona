@@ -1,7 +1,7 @@
 // require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const envalid = require('envalid');
+// const envalid = require('envalid');
 const os = require('os');
 
 const app = express();
@@ -21,7 +21,7 @@ app.use(require("./routes/persona"));
 const HOSTNAME = os.hostname();
 const PORT = process.env.PORT || 8000;
 const server = app.listen(PORT, () => {
-  console.log(`Boiler service is running on host ${HOSTNAME} port ${PORT}`);
+  console.log(`Persona service is running on host ${HOSTNAME} port ${PORT}`);
 });
 
 // close

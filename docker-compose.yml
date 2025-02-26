@@ -1,6 +1,5 @@
 version: '3.9'
 services:
-
   postgres:
     image: postgres
     restart: always
@@ -10,3 +9,27 @@ services:
       POSTGRES_DB: postgres
     ports:
       - "5432:5432"
+
+  persona:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000' # expose local port
+    volumes:
+      - .:/usr/src/app # mount local working directory for live reload
+      - /usr/src/app/node_modules # mount node_modules for caching
+    depends_on:
+      - postgres # wait for postgres service container
+    environment:
+      APP_ENV: development
+      NODE_ENV: docker
+      LOG_LEVEL: info
+      PG_USERNAME: postgres
+      PG_PASSWORD: postgres
+      PG_HOST: postgres # Always use service name in Docker
+      PG_PORT: 5432
+      PG_DATABASE: postgres
+    command: npm run dev
+
+

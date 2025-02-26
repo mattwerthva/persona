@@ -2,6 +2,8 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    console.log(`Migrate Up: NODE_ENV: ${process.env.NODE_ENV}`);
+
     await queryInterface.sequelize.query(`
       CREATE TABLE public.personas (
         id VARCHAR(200) PRIMARY KEY NOT NULL,

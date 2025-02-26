@@ -11,6 +11,8 @@ const PersonaService = require('../services/persona');
 *   post:
 *     summary: Create a persona
 *     description: Create a persona
+*     security:
+*       - authHeader: []
 *     requestBody:
 *       description: The persona data to create
 *       required: true
@@ -88,6 +90,8 @@ router.post('/persona', authorize('some-role'), async (req,res) => {
 *       - in: path
 *         name: id
 *         required: true
+*     security:
+*       - authHeader: []
 *     responses:
 *       5XX:
 *         description: Unexpected error.
@@ -98,7 +102,7 @@ router.post('/persona', authorize('some-role'), async (req,res) => {
 *       404:
 *         description: Persona with ID not found.
 *       200:
-*         description: Persona created
+*         description: Persona retrieved
 *         content:
 *           application/json:
 *             schema:
