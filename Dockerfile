@@ -7,9 +7,10 @@ FROM node:18-alpine
 # Install application files
 WORKDIR /usr/src/app
 COPY ./package*.json ./
-COPY ./app ./app
+# COPY ./app ./app
+COPY . .
 
 # Install dependencies
 RUN npm install
 
-CMD ["node", "app/server.js"]
+CMD ["npm", "run", "dev"]
