@@ -47,10 +47,10 @@ const PersonaService = require('../services/persona');
 *       5XX:
 *         description: Unexpected error.
 *       403:
-*         description: unauthorized.
+*         description: Invalid authorization.
 *       400:
-*         description: Invalid input.  Missing reuired fields.  Id is not unique.
-*       200:
+*         description: Invalid input.  Missing required fields.  Id is not unique.
+*       201:
 *         description: Persona created
 *         content:
 *           application/json:
@@ -73,10 +73,10 @@ router.post('/persona', authorize('some-role'), async (req,res) => {
 
   return await PersonaService.create(body)
     .then((persona) => {
-        return res.status(200).send(persona);
+        return res.status(201).send(persona);
     })
     .catch((error) => {
-        return res.status(error.status | 500).send(error.message);
+        return res.status(error.status || 500).send(error.message);
     })
 });
 
@@ -98,7 +98,7 @@ router.post('/persona', authorize('some-role'), async (req,res) => {
 *       400:
 *         description: Invalid input.  Missing required id.
 *       403:
-*         description: unauthorized.
+*         description: Invalid authorization.
 *       404:
 *         description: Persona with ID not found.
 *       200:
@@ -122,19 +122,25 @@ router.get('/persona/:id', authorize('some-role'), async (req,res) => {
         return res.status(200).send(persona);
     })
     .catch((error) => {
-        return res.status(500).send(error.message);
+        return res.status(error.status || 500).send(error.message);
     })
 });
 
 
 function validateRequiredFields(response, params){
+  // console.log(`Validate ${JSON.stringify(params)}`);
+  let valid = true;
   _.forOwn(params, (value, key) => {
-    if(!value){
+    if(typeof value === 'number' && value === 0){
+        // 0 is valid
+        valid = true;
+    } else if(!value){
       response.status(400).send({ message: `Missing required ${key} parameter.`});
+      valid = false;
       return false;
     }
   });
-  return true;
+  return valid;
 }
 
 module.exports = router

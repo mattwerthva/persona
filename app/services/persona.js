@@ -111,7 +111,12 @@ class PersonaService{
         
         } catch (error) {
             console.error('Error fetching weather:', error.message);
-            throw error;
+
+            // handle weather not avail gracefully
+            persona.city = 'weather data unavailable';
+            persona.state = 'weather data unavailable';
+            persona.current_tempurature = -1;
+            return persona;
         }
     }
 }

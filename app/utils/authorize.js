@@ -9,7 +9,7 @@ function authorize(role){
             const auth = req.headers.authorization;
 
             if(!auth){
-                return res.status(403).send('Missing authorization.');
+                return res.status(403).send({ message: 'Invalid authorization'});
             }
 
             return next();

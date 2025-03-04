@@ -79,7 +79,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Persona created",
             "content": {
               "application/json": {
@@ -90,10 +90,10 @@
             }
           },
           "400": {
-            "description": "Invalid input.  Missing reuired fields.  Id is not unique."
+            "description": "Invalid input.  Missing required fields.  Id is not unique."
           },
           "403": {
-            "description": "unauthorized."
+            "description": "Invalid authorization."
           },
           "5XX": {
             "description": "Unexpected error."
@@ -119,7 +119,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Persona created",
+            "description": "Persona retrieved",
             "content": {
               "application/json": {
                 "schema": {
@@ -132,7 +132,7 @@
             "description": "Invalid input.  Missing required id."
           },
           "403": {
-            "description": "unauthorized."
+            "description": "Invalid authorization."
           },
           "404": {
             "description": "Persona with ID not found."
@@ -176,11 +176,11 @@
             }
           },
           "latitude": {
-            "type": "float",
+            "type": "number",
             "description": "The latitude of the persona's location"
           },
           "longitude": {
-            "type": "float",
+            "type": "number",
             "description": "The longitude of the persona's location"
           },
           "city": {
@@ -192,7 +192,7 @@
             "description": "The state for the lat/long according by the National Weather Service"
           },
           "current_tempurature": {
-            "type": "float",
+            "type": "number",
             "description": "The current tempurature for the lat/long according by the National Weather Service"
           }
         }

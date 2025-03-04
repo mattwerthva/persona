@@ -5,12 +5,14 @@
   "license": "none",
   "private": true,
   "scripts": {
+    "docs": "node ./app/swagger/jsdocs.js",
     "dev": "node app/server.js",
     "migrate": "npx sequelize-cli --config app/db/config/config.json --migrations-path app/db/migrations db:migrate",
     "start": "docker-compose up -d && NODE_ENV=development npm run migrate && docker-compose logs -f persona",
     "stop": "docker-compose down",
     "debug": "docker-compose up -d postgres && NODE_ENV=development npm run migrate && nodemon --inspect app/server.js",
-    "test": "docker-compose up -d postgres && NODE_ENV=development npm run migrate && PG_HOST=localhost jest && docker-compose down"
+    "test": "docker-compose up -d postgres && NODE_ENV=development npm run migrate && PG_HOST=localhost jest && docker-compose down",
+    "debugtest": "PG_HOST=localhost jest"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -38,5 +40,8 @@
   },
   "engines": {
     "node": "^18.20.5"
+  },
+  "jest": {
+    "testTimeout": 10000
   }
 }
