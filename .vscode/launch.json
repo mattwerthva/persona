@@ -7,9 +7,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch npm start",
+            "name": "Debug npm debug",
             "runtimeExecutable": "npm",
-            "runtimeArgs": ["run", "start"],
+            "runtimeArgs": ["run", "debug"],
             "skipFiles": ["<node_internals>/**"],
             "cwd": "${workspaceFolder}"
         },

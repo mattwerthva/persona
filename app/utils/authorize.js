@@ -6,7 +6,7 @@ function authorize(role){
             
             // TODO - check auth header and auth logic
 
-            const auth = req.headers.Authorization;
+            const auth = req.headers.authorization;
 
             if(!auth){
                 return res.status(403).send('Missing authorization.');

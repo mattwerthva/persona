@@ -1,4 +1,9 @@
 components:
+  securitySchemes:
+    authHeader:
+      type: apiKey
+      in: header          # Specifies the Authorization header
+      name: authorization # Header name to set
   schemas:
     Persona:
       type: object

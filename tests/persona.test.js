@@ -1,5 +1,5 @@
 // use local docker pg
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'docker';
 
 // supertest to our local service instance
 const supertest = require("supertest");

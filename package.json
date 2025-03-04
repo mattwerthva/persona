@@ -1,18 +1,16 @@
 {
-  "name": "Node Boiler",
+  "name": "Persona",
   "version": "1.0.0",
   "main": "server.js",
   "license": "none",
   "private": true,
   "scripts": {
-    "dev": "source .env && nodemon ./app/server.js",
-    "start": "source .env && node --inspect app/server.js ",
-    "pretest": "docker-compose up -d && npm run migrate-up; echo 'pg is ready.'",
-    "test": "jest --verbose --forceExit --passWithNoTests; echo 'tests are complete.'",
-    "posttest": "docker-compose down",
-    "docs": "node ./app/swagger/jsdocs.js",
-    "migrate-up": "cd ./app/db && npx sequelize-cli db:migrate",
-    "migrate-down": "cd ./app/db && npx sequelize-cli db:migrate:undo"
+    "dev": "node app/server.js",
+    "migrate": "npx sequelize-cli --config app/db/config/config.json --migrations-path app/db/migrations db:migrate",
+    "start": "docker-compose up -d && NODE_ENV=development npm run migrate && docker-compose logs -f persona",
+    "stop": "docker-compose down",
+    "debug": "docker-compose up -d postgres && NODE_ENV=development npm run migrate && nodemon --inspect app/server.js",
+    "test": "docker-compose up -d postgres && NODE_ENV=development npm run migrate && PG_HOST=localhost jest && docker-compose down"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -24,6 +22,7 @@
     "node-fetch": "^2.7.0",
     "pg": "^8.13.3",
     "sequelize": "^6.37.5",
+    "sequelize-cli": "6.6.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
