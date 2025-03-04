@@ -23,10 +23,10 @@ components:
           items:
             type: string
         latitude:
-          type: float
+          type: number
           description: The latitude of the persona's location
         longitude:
-          type: float
+          type: number
           description: The longitude of the persona's location
         city:
           type: string
@@ -35,5 +35,5 @@ components:
           type: string
           description: The state for the lat/long according by the National Weather Service
         current_tempurature:
-          type: float
+          type: number
           description: The current tempurature for the lat/long according by the National Weather Service

@@ -17,17 +17,20 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(require("./routes/health"));
 app.use(require("./routes/persona"));
 
-// listen
-const HOSTNAME = os.hostname();
-const PORT = process.env.PORT || 8000;
-const server = app.listen(PORT, () => {
-  console.log(`Persona service is running on host ${HOSTNAME} port ${PORT}`);
-});
+// Only start the server if this file is run directly (not imported from Tests)
+if (require.main === module) {
+    // listen
+    const HOSTNAME = os.hostname();
+    const PORT = process.env.PORT || 8000;
+    const server = app.listen(PORT, () => {
+      console.log(`Persona service is running on host ${HOSTNAME} port ${PORT}`);
+    });
 
-// close
-app.closeServer = () => {
-  server.close();
-};
+    // close
+    app.closeServer = () => {
+      server.close();
+    };
+}
 
 // make app avail for tests
 module.exports = app;

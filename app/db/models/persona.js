@@ -35,7 +35,11 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           min: -90,
           max: 90
-        }
+        },
+        get() {
+          const value = this.getDataValue('latitude');
+          return value === null ? null : Number.parseFloat(value);
+        },
       },
       longitude: {
         type: DataTypes.DECIMAL,
@@ -43,7 +47,11 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           min: -180,
           max: 180
-        }
+        },
+        get() {
+          const value = this.getDataValue('longitude');
+          return value === null ? null : Number.parseFloat(value);
+        },
       }
     },
     {
